@@ -9,11 +9,22 @@ class Dashboard extends React.Component {
     }
     onChange = (e) => {
         e.preventDefault()
-        console.log(e.target.value)
-        this.setState({ currentCountry: e.target.value })
+        let shortcut = ''
+        if (e.target.value === 'Poland') {
+            shortcut = 'PL'
+        } else if (e.target.value === 'Germany') {
+            shortcut = "DE"
+        } else if (e.target.value === 'Spain') {
+            shortcut = "ES"
+        } else if (e.target.value === 'France') {
+            shortcut = 'FR'
+        }
+        this.setState({
+            currentCountry: shortcut
+        })
     }
     componentDidMount() {
-        fetch('https://api.openaq.org/v1/locations')
+        fetch(`https://api.openaq.org/v1/latest/?parameter=pm25&country=${this.state.currentCountry}`)
             .then(response => response.json())
             .then(json => this.setState({ cities: json }));
     }
@@ -32,7 +43,6 @@ class Dashboard extends React.Component {
                         })}
                     </datalist>
                 </form>
-
                 <Info />
             </div>
         )
