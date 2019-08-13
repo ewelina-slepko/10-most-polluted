@@ -7,27 +7,41 @@ class Dashboard extends React.Component {
         cities: '',
         currentCountry: ''
     }
-    onChange = (e) => {
-        e.preventDefault()
-        let shortcut = ''
-        if (e.target.value === 'Poland') {
-            shortcut = 'PL'
-        } else if (e.target.value === 'Germany') {
-            shortcut = "DE"
-        } else if (e.target.value === 'Spain') {
-            shortcut = "ES"
-        } else if (e.target.value === 'France') {
-            shortcut = 'FR'
-        }
-        this.setState({
-            currentCountry: shortcut
-        })
-    }
-    componentDidMount() {
-        fetch(`https://api.openaq.org/v1/latest/?parameter=pm25&country=${this.state.currentCountry}`)
+    getInfo = (shortcut) => {
+        fetch(`https://api.openaq.org/v1/latest/?parameter=pm25&country=${shortcut}&limit=1000`)
             .then(response => response.json())
             .then(json => this.setState({ cities: json }));
     }
+    onChange = (e) => {
+        e.preventDefault()
+        let cityShortcut = ''
+        if (e.target.value === 'Poland') {
+            cityShortcut = 'PL'
+        } else if (e.target.value === 'Germany') {
+            cityShortcut = "DE"
+        } else if (e.target.value === 'Spain') {
+            cityShortcut = "ES"
+        } else if (e.target.value === 'France') {
+            cityShortcut = 'FR'
+        }
+        this.setState({
+            currentCountry: cityShortcut
+        })
+        this.getInfo(cityShortcut)
+    }
+    sortData = () => {
+        let arr = []
+        this.state.currentCountry !== '' && (this.state.cities.results.length > 0 &&
+            (arr = this.state.cities.results.map((info, i) => {
+                return ({
+                    value: info.measurements[0].value,
+                    city: info.city
+                })
+            }))
+        )
+        console.log(arr)
+    }
+
     render() {
         const countries = ["Poland", "Germany", "Spain", "France"]
         return (
@@ -42,8 +56,10 @@ class Dashboard extends React.Component {
                             )
                         })}
                     </datalist>
+                    <button>Submit</button>
                 </form>
                 <Info />
+                {console.log(this.sortData())}
             </div>
         )
     }
