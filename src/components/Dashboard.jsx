@@ -5,61 +5,64 @@ import styles from '../styles/Dashboard.module.css'
 class Dashboard extends React.Component {
     state = {
         cities: '',
-        currentCountry: ''
+        currentCountry: '',
+        countries: ''
+    }
+    componentDidMount() {
+        fetch('https://api.openaq.org/v1/cities?order_by=country&sort=asc&limit=10000')
+            .then(response => response.json())
+            .then(json => this.setState({ countries: json }));
     }
     getInfo = (shortcut) => {
-        fetch(`https://api.openaq.org/v1/latest/?parameter=pm25&country=${shortcut}&limit=1000`)
+        fetch(`https://api.openaq.org/v1/measurements?country=${shortcut}&parameter=pm25&order_by=value&sort=desc&limit=10000`)
             .then(response => response.json())
             .then(json => this.setState({ cities: json }));
     }
-    onChange = (e) => {
-        e.preventDefault()
-        let cityShortcut = ''
-        if (e.target.value === 'Poland') {
-            cityShortcut = 'PL'
-        } else if (e.target.value === 'Germany') {
-            cityShortcut = "DE"
-        } else if (e.target.value === 'Spain') {
-            cityShortcut = "ES"
-        } else if (e.target.value === 'France') {
-            cityShortcut = 'FR'
-        }
-        this.setState({
-            currentCountry: cityShortcut
+    getUniqueCountry = () => {
+        const countries = this.state.countries && this.state.countries.results.map((info) => {
+            return info.country
         })
-        this.getInfo(cityShortcut)
+        return countries
     }
-    sortData = () => {
+    sortCities = () => {
         let arr = []
-        this.state.currentCountry !== '' && (this.state.cities.results.length > 0 &&
+        this.state.cities &&
             (arr = this.state.cities.results.map((info, i) => {
                 return ({
-                    value: info.measurements[0].value,
-                    city: info.city
+                    'city': info.city, 'value': info.value, 'parameter': info.parameter
                 })
             }))
-        )
-        console.log(arr)
+        const keys = ['city']
+        const filtered = arr.filter(
+            (s => o =>
+                (k => !s.has(k) && s.add(k))(keys.map(k => o[k]).join('|'))
+            )(new Set())
+        );
+        return filtered.splice(0, 10)
     }
-
+    onChange = (e) => {
+        e.preventDefault()
+        this.setState({
+            currentCountry: e.target.options[e.target.selectedIndex].text
+        })
+        this.getInfo(e.target.options[e.target.selectedIndex].text)
+    }
     render() {
-        const countries = ["Poland", "Germany", "Spain", "France"]
         return (
             <div className={styles.container}>
-                <h3>Enter the country</h3>
+                <h3>Select the country</h3>
                 <form>
-                    <input type="text" id="txtAutoComplete" list="languageList" onChange={this.onChange} className={styles.input_style} />
-                    <datalist id="languageList">
-                        {countries.map((country) => {
-                            return (
-                                <option value={country} key={country} className={styles.select_style}>{country}</option>
-                            )
+                    <select id="countrySelect" onChange={this.onChange}>
+                        {[...new Set(this.getUniqueCountry())].map((country) => {
+                            return <option value={country} key={country}>{country}</option>
                         })}
-                    </datalist>
-                    <button>Submit</button>
+                    </select>
                 </form>
                 <Info />
-                {console.log(this.sortData())}
+                {this.sortCities().map((info) => {
+                    return <p>{info.city}</p>
+                })}
+
             </div>
         )
     }
