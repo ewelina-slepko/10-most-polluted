@@ -3,34 +3,21 @@ import { makeStyles } from '@material-ui/core/styles'
 import Background from '../components/images/industrial.jpg'
 import clsx from 'clsx'
 
+
 const Header = () => {
     const classes = useStyles();
     return (
         <div className={window.innerWidth < 992 ? clsx(classes.background, classes.backgroundMobile) : classes.background}>
-            <h1 className={classes.header}>Air Pollution</h1>
+            <h1 className={classes.header}>The most polluted cities</h1>
         </div>
     )
 }
 
 const useStyles = makeStyles(theme => ({
-    containerCenter: {
-        margin: '0 auto',
-        display: 'flex',
-        width: 300,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '130px 50px',
-
-    },
-    containerRight: {
-        display: 'flex',
-        width: 300,
-        flexDirection: 'column',
-        paddingTop: 100,
-        margin: '0px 300px 0px auto'
-    },
     background: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around',
         height: '100vh',
         backgroundImage: `url(${Background})`,
         backgroundSize: 'cover',
@@ -40,8 +27,15 @@ const useStyles = makeStyles(theme => ({
         backgroundPosition: '-200px'
     },
     header: {
-        margin: 0,
-        padding: 0
+        flex: 1,
+        padding: 10,
+        margin: 30,
+        textTransform: 'uppercase',
+        color: '#fff',
+        letterSpacing: 1,
+        textAlign: 'center',
+        maxWidth: 500,
+        borderRadius: 20
     }
 }));
 

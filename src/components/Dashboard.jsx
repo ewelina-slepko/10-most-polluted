@@ -3,6 +3,7 @@ import Header from './Header'
 import Info from './Info'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 const Dashboard = () => {
     const [values, setValues] = React.useState({
@@ -168,19 +169,38 @@ const Dashboard = () => {
                         </option>
                     ))}
                 </TextField>
-                <Info cities={sortCities()} />
+                <div className={classes.btnWrapper}>
+                    <Button
+                        style={{
+                            backgroundColor: "#39a83b",
+                        }}
+                        variant="contained"
+                        color="primary"
+                        className={classes.btnPosition}
+                        type="submit"
+                        label="Select"
+                        onSubmit={handleChange('currentCountry')}
+                    >
+                        Sumbit
+                </Button>
+                </div>
             </div>
+            <Info cities={sortCities()} />
         </>
     )
 }
 
 const useStyles = makeStyles(theme => ({
     container: {
-        textAlign: 'center'
+        display: 'flex',
+        justifyContent: 'center'
     },
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
+    },
+    btnWrapper: {
+        marginTop: 20
     },
     dense: {
         marginTop: theme.spacing(2),
