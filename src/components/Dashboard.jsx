@@ -1,4 +1,5 @@
 import React from 'react'
+import Header from './Header'
 import Info from './Info'
 import styles from '../styles/Dashboard.module.css'
 
@@ -40,28 +41,20 @@ class Dashboard extends React.Component {
             'DE', 'HU', 'IE', 'IT', 'XK', 'LT', 'LU', 'MK', 'MT', 'NO', 'PL',
             'PT', 'RS', 'SK', 'ES', 'CH', 'GB']
         return (
-            <div className={styles.container}>
-                <h3>Select the country</h3>
-                <form>
-                    <select id="countrySelect" onChange={this.onChange}>
-                        {countries.map((country) => {
-                            return <option value={country} key={country}>{country}</option>
-                        })}
-                    </select>
-                </form>
-                <Info />
-                {this.sortCities().map((info) => {
-                    return (
-                        <>
-                            <p>
-                                <span>City: {info.city} </span>
-                                <span>Value: {info.value} </span>
-                                <span>Parameter: {info.parameter} </span>
-                            </p>
-                        </>
-                    )
-                })}
-            </div>
+            <>
+                <Header />
+                <div className={styles.container}>
+                    <h3>Select the country</h3>
+                    <form>
+                        <select id="countrySelect" onChange={this.onChange} className={styles.select_style}>
+                            {countries.map((country) => {
+                                return <option value={country} key={country}>{country}</option>
+                            })}
+                        </select>
+                    </form>
+                    <Info cities={this.sortCities()} />
+                </div>
+            </>
         )
     }
 }

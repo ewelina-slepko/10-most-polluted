@@ -1,8 +1,20 @@
 import React from 'react'
 
-const Info = () => {
+const Info = ({ cities }) => {
     return (
-        <div></div>
+        <div>
+            {cities.map((info) => {
+                return (
+                    <>
+                        <p>
+                            <span>City: {info.city} </span>
+                            <span>Value: {info.value} </span>
+                            <span>Parameter: {info.parameter} </span>
+                        </p>
+                    </>
+                )
+            })}
+        </div>
     )
 }
 
