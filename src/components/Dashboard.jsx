@@ -6,21 +6,21 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 const Dashboard = () => {
-    const [values, setValues] = React.useState({
-        cities: '',
-        currentCountry: '',
-    });
+    const [cities, setCities] = React.useState([]);
 
-    const getInfo = (shortcut) => {
+    const [country, setCountry] = React.useState('');
+
+    const getInfo = shortcut => (e) => {
+        e.preventDefault();
         fetch(`https://api.openaq.org/v1/measurements?country=${shortcut}&parameter=pm25&order_by=value&sort=desc&limit=10000`)
             .then(response => response.json())
-            .then(json => setValues({ cities: json }));
+            .then(json => setCities(json.results));
     }
 
     const sortCities = () => {
         let arr = []
-        values.cities &&
-            (arr = values.cities.results.map((info, i) => {
+        cities.length > 0 &&
+            (arr = cities.map((info, i) => {
                 return ({
                     'city': info.city, 'value': info.value, 'parameter': info.parameter
                 })
@@ -34,9 +34,9 @@ const Dashboard = () => {
         return filtered.splice(0, 10)
     }
 
-    const handleChange = prop => event => {
-        setValues({ ...values, [prop]: event.target.value });
-        getInfo(event.target.value)
+    const handleChange = event => {
+        setCountry(event.target.value);
+        // getInfo(event.target.value)
     };
 
     const classes = useStyles();
@@ -51,7 +51,7 @@ const Dashboard = () => {
         },
         {
             value: 'BA',
-            label: 'BA',
+            label: 'Bosnia and Herzegovina',
         },
         {
             value: 'HR',
@@ -63,15 +63,11 @@ const Dashboard = () => {
         },
         {
             value: 'FI',
-            label: 'FI',
+            label: 'Finland',
         },
         {
             value: 'FR',
             label: 'France',
-        },
-        {
-            value: 'GE',
-            label: 'GE',
         },
         {
             value: 'DE',
@@ -119,7 +115,7 @@ const Dashboard = () => {
         },
         {
             value: 'PT',
-            label: 'PT',
+            label: 'Portugal',
         },
         {
             value: 'RS',
@@ -135,7 +131,7 @@ const Dashboard = () => {
         },
         {
             value: 'CH',
-            label: 'CH',
+            label: 'Switzerland',
         },
         {
             value: 'GB',
@@ -146,46 +142,49 @@ const Dashboard = () => {
         <>
             <Header />
             <div className={classes.container}>
-                <TextField
-                    id="outlined-select-currency-native"
-                    select
-                    label="Select"
-                    className={classes.textField}
-                    value={values.currency}
-                    onChange={handleChange('currentCountry')}
-                    SelectProps={{
-                        native: true,
-                        MenuProps: {
-                            className: classes.menu,
-                        },
-                    }}
-                    helperText="Please select country"
-                    margin="normal"
-                    variant="outlined"
-                >
-                    {countries.map(option => (
-                        <option key={option.value} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </TextField>
-                <div className={classes.btnWrapper}>
-                    <Button
-                        style={{
-                            backgroundColor: "#39a83b",
-                        }}
-                        variant="contained"
-                        color="primary"
-                        className={classes.btnPosition}
-                        type="submit"
+                <form className={classes.container} onSubmit={getInfo(country)} noValidate autoComplete="off">
+                    <TextField
+                        id="outlined-select-currency-native"
+                        select
                         label="Select"
-                        onSubmit={handleChange('currentCountry')}
+                        className={classes.textField}
+                        value={country}
+                        onChange={handleChange}
+                        SelectProps={{
+                            native: true,
+                            MenuProps: {
+                                className: classes.menu,
+                            },
+                        }}
+                        helperText="Please select country"
+                        margin="normal"
+                        variant="outlined"
                     >
-                        Sumbit
-                </Button>
-                </div>
+                        {countries.map(option => (
+                            <option key={option.value} value={option.value}>
+                                {option.label}
+                            </option>
+                        ))}
+                    </TextField>
+                    <div className={classes.btnWrapper}>
+                        <Button
+                            style={{
+                                backgroundColor: "#39a83b",
+                            }}
+                            variant="contained"
+                            color="primary"
+                            className={classes.btnPosition}
+                            type="submit"
+                            label="Select"
+
+                        >
+                            Sumbit
+                    </Button>
+                    </div>
+                </form>
             </div>
             <Info cities={sortCities()} />
+            {console.log(country)}
         </>
     )
 }

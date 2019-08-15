@@ -5,13 +5,11 @@ const Info = ({ cities }) => {
         <div>
             {cities.map((info) => {
                 return (
-                    <>
-                        <p>
-                            <span>City: {info.city} </span>
-                            <span>Value: {info.value} </span>
-                            <span>Parameter: {info.parameter} </span>
-                        </p>
-                    </>
+                    <p key={info.city}>
+                        <span>City: {info.city} </span>
+                        <span>Value: {info.value} </span>
+                        <span>Parameter: {info.parameter} </span>
+                    </p>
                 )
             })}
         </div>
