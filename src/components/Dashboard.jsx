@@ -1,22 +1,25 @@
 import React from 'react'
 import Header from './Header'
 import Info from './Info'
-import styles from '../styles/Dashboard.module.css'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
 
-class Dashboard extends React.Component {
-    state = {
+const Dashboard = () => {
+    const [values, setValues] = React.useState({
         cities: '',
         currentCountry: '',
-    }
-    getInfo = (shortcut) => {
+    });
+
+    const getInfo = (shortcut) => {
         fetch(`https://api.openaq.org/v1/measurements?country=${shortcut}&parameter=pm25&order_by=value&sort=desc&limit=10000`)
             .then(response => response.json())
-            .then(json => this.setState({ cities: json }));
+            .then(json => setValues({ cities: json }));
     }
-    sortCities = () => {
+
+    const sortCities = () => {
         let arr = []
-        this.state.cities &&
-            (arr = this.state.cities.results.map((info, i) => {
+        values.cities &&
+            (arr = values.cities.results.map((info, i) => {
                 return ({
                     'city': info.city, 'value': info.value, 'parameter': info.parameter
                 })
@@ -29,34 +32,163 @@ class Dashboard extends React.Component {
         );
         return filtered.splice(0, 10)
     }
-    onChange = (e) => {
-        e.preventDefault()
-        this.setState({
-            currentCountry: e.target.options[e.target.selectedIndex].text
-        })
-        this.getInfo(e.target.options[e.target.selectedIndex].text)
-    }
-    render() {
-        const countries = ['BE', 'BA', 'HR', 'CZ', 'FI', 'FR', 'GE',
-            'DE', 'HU', 'IE', 'IT', 'XK', 'LT', 'LU', 'MK', 'MT', 'NO', 'PL',
-            'PT', 'RS', 'SK', 'ES', 'CH', 'GB']
-        return (
-            <>
-                <Header />
-                <div className={styles.container}>
-                    <h3>Select the country</h3>
-                    <form>
-                        <select id="countrySelect" onChange={this.onChange} className={styles.select_style}>
-                            {countries.map((country) => {
-                                return <option value={country} key={country}>{country}</option>
-                            })}
-                        </select>
-                    </form>
-                    <Info cities={this.sortCities()} />
-                </div>
-            </>
-        )
-    }
+
+    const handleChange = prop => event => {
+        setValues({ ...values, [prop]: event.target.value });
+        getInfo(event.target.value)
+    };
+
+    const classes = useStyles();
+    const countries = [
+        {
+            value: '',
+            label: '',
+        },
+        {
+            value: 'BE',
+            label: 'Belgium',
+        },
+        {
+            value: 'BA',
+            label: 'BA',
+        },
+        {
+            value: 'HR',
+            label: 'Croatia',
+        },
+        {
+            value: 'CZ',
+            label: 'Czechia',
+        },
+        {
+            value: 'FI',
+            label: 'FI',
+        },
+        {
+            value: 'FR',
+            label: 'France',
+        },
+        {
+            value: 'GE',
+            label: 'GE',
+        },
+        {
+            value: 'DE',
+            label: 'Germany',
+        },
+        {
+            value: 'HU',
+            label: 'Hungary',
+        },
+        {
+            value: 'IE',
+            label: 'Ireland',
+        },
+        {
+            value: 'IT',
+            label: 'Italy',
+        },
+        {
+            value: 'XK',
+            label: 'Kosowo',
+        },
+        {
+            value: 'LT',
+            label: 'Lithuania',
+        },
+        {
+            value: 'LU',
+            label: 'Luxembourg',
+        },
+        {
+            value: 'MK',
+            label: 'North Macedonia',
+        },
+        {
+            value: 'MT',
+            label: 'Malta',
+        },
+        {
+            value: 'NO',
+            label: 'Norway',
+        },
+        {
+            value: 'PL',
+            label: 'Poland',
+        },
+        {
+            value: 'PT',
+            label: 'PT',
+        },
+        {
+            value: 'RS',
+            label: 'Serbia',
+        },
+        {
+            value: 'SK',
+            label: 'Slovakia',
+        },
+        {
+            value: 'ES',
+            label: 'Spain',
+        },
+        {
+            value: 'CH',
+            label: 'CH',
+        },
+        {
+            value: 'GB',
+            label: 'Great Britain',
+        },
+    ]
+    return (
+        <>
+            <Header />
+            <div className={classes.container}>
+                <TextField
+                    id="outlined-select-currency-native"
+                    select
+                    label="Select"
+                    className={classes.textField}
+                    value={values.currency}
+                    onChange={handleChange('currentCountry')}
+                    SelectProps={{
+                        native: true,
+                        MenuProps: {
+                            className: classes.menu,
+                        },
+                    }}
+                    helperText="Please select country"
+                    margin="normal"
+                    variant="outlined"
+                >
+                    {countries.map(option => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </TextField>
+                <Info cities={sortCities()} />
+            </div>
+        </>
+    )
 }
+
+const useStyles = makeStyles(theme => ({
+    container: {
+        textAlign: 'center'
+    },
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+    },
+    dense: {
+        marginTop: theme.spacing(2),
+    },
+    menu: {
+        width: 200,
+    },
+}));
+
 
 export default Dashboard;
