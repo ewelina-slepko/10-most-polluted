@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6979fbc93fac8ded9f1257baf5edd4a0",
+    "revision": "3872fe888f4241c4c677c2828af62a4e",
     "url": "/Most-polluted-cities/index.html"
   },
   {
