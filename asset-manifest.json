@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/10-most-polluted/static/css/main.61b68826.chunk.css",
-    "main.js": "/10-most-polluted/static/js/main.6b5793d6.chunk.js",
-    "main.js.map": "/10-most-polluted/static/js/main.6b5793d6.chunk.js.map",
-    "runtime~main.js": "/10-most-polluted/static/js/runtime~main.a6caaa4e.js",
-    "runtime~main.js.map": "/10-most-polluted/static/js/runtime~main.a6caaa4e.js.map",
-    "static/js/2.3ce08324.chunk.js": "/10-most-polluted/static/js/2.3ce08324.chunk.js",
-    "static/js/2.3ce08324.chunk.js.map": "/10-most-polluted/static/js/2.3ce08324.chunk.js.map",
-    "index.html": "/10-most-polluted/index.html",
-    "precache-manifest.bf472fb507f54665bd4c4ca6a98345e3.js": "/10-most-polluted/precache-manifest.bf472fb507f54665bd4c4ca6a98345e3.js",
-    "service-worker.js": "/10-most-polluted/service-worker.js",
-    "static/css/main.61b68826.chunk.css.map": "/10-most-polluted/static/css/main.61b68826.chunk.css.map",
-    "static/media/industrial.jpg": "/10-most-polluted/static/media/industrial.f7af387a.jpg"
+    "main.css": "/Most-polluted-cities/static/css/main.61b68826.chunk.css",
+    "main.js": "/Most-polluted-cities/static/js/main.91a62d79.chunk.js",
+    "main.js.map": "/Most-polluted-cities/static/js/main.91a62d79.chunk.js.map",
+    "runtime~main.js": "/Most-polluted-cities/static/js/runtime~main.d4d98e39.js",
+    "runtime~main.js.map": "/Most-polluted-cities/static/js/runtime~main.d4d98e39.js.map",
+    "static/js/2.926bec38.chunk.js": "/Most-polluted-cities/static/js/2.926bec38.chunk.js",
+    "static/js/2.926bec38.chunk.js.map": "/Most-polluted-cities/static/js/2.926bec38.chunk.js.map",
+    "index.html": "/Most-polluted-cities/index.html",
+    "precache-manifest.598174bfd556f708ea01209e4d54a5c8.js": "/Most-polluted-cities/precache-manifest.598174bfd556f708ea01209e4d54a5c8.js",
+    "service-worker.js": "/Most-polluted-cities/service-worker.js",
+    "static/css/main.61b68826.chunk.css.map": "/Most-polluted-cities/static/css/main.61b68826.chunk.css.map",
+    "static/media/industrial.png": "/Most-polluted-cities/static/media/industrial.0205185f.png"
   }
 }
