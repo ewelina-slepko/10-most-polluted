@@ -8,12 +8,11 @@ const Info = ({ cities }) => {
         <>
             <div className={classes.container}>
                 <div className={classes.wrapper}>
-                    {cities.map((info) => {
+                    {cities.map((info, i) => {
                         return (
                             <p key={info.city} className={classes.text}>
-                                <span>City: {info.city} </span>
-                                <span>Value: {info.value} </span>
-                                <span>Parameter: {info.parameter} </span>
+
+                                <p>{i + 1}. <span className={classes.city}>{info.city}:</span> {info.value} {info.parameter}</p>
                             </p>
                         )
                     })}
@@ -34,7 +33,11 @@ const useStyles = makeStyles(theme => ({
         maxWidth: 400
     },
     text: {
-
+        color: '#4d4d4d'
+    },
+    city: {
+        fontSize: '1.4rem',
+        padding: '4px 6px'
     }
 
 }));
