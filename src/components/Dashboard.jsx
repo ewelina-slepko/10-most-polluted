@@ -192,7 +192,8 @@ const Dashboard = () => {
 const useStyles = makeStyles(theme => ({
     container: {
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        margin: 10
     },
     textField: {
         marginLeft: theme.spacing(1),
