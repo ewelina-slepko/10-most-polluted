@@ -142,7 +142,7 @@ const Dashboard = () => {
         <>
             <Header />
             <div className={classes.container}>
-                <form className={classes.container} onSubmit={getInfo(country)} noValidate autoComplete="off">
+                <form className={classes.container} onSubmit={getInfo(country)} noValidate>
                     <TextField
                         id="outlined-select-currency-native"
                         select
@@ -169,7 +169,7 @@ const Dashboard = () => {
                     <div className={classes.btnWrapper}>
                         <Button
                             style={{
-                                backgroundColor: "#39a83b",
+                                backgroundColor: "#0d4ea8",
                             }}
                             variant="contained"
                             color="primary"

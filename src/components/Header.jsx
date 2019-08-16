@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Background from '../components/images/industrial.jpg'
+import Background from '../components/images/industrial.png'
 import clsx from 'clsx'
 
 
@@ -16,26 +16,25 @@ const Header = () => {
 const useStyles = makeStyles(theme => ({
     background: {
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         justifyContent: 'space-around',
         height: '100vh',
         backgroundImage: `url(${Background})`,
         backgroundSize: 'cover',
-        opacity: '0.6'
+        opacity: '0.8'
     },
     backgroundMobile: {
         backgroundPosition: '-200px'
     },
     header: {
         flex: 1,
-        padding: 10,
         margin: 30,
         textTransform: 'uppercase',
         color: '#fff',
         letterSpacing: 1,
         textAlign: 'center',
         maxWidth: 500,
-        borderRadius: 20
+        borderRadius: 3,
     }
 }));
 
