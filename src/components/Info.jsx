@@ -11,8 +11,8 @@ const Info = ({ cities }) => {
                     {cities.map((info, i) => {
                         return (
                             <p key={info.city} className={classes.text}>
-                                <span className={classes.city}>{info.city}</span>
-                                {/* {info.value} {info.parameter} */}
+                                <p className={classes.city}>{info.city}</p>
+                                <p className={classes.value}>{info.value} {info.parameter}</p>
                             </p>
                         )
                     })}
@@ -39,21 +39,27 @@ const useStyles = makeStyles(theme => ({
     },
     text: {
         flex: 1,
-        padding: '20px 10px',
+        padding: '20px 50px',
         margin: '10px',
         backgroundColor: '#edf1fa',
         borderRadius: 20,
         whiteSpace: 'nowrap',
-        maxWidth: 270,
+        maxWidth: 330,
         textAlign: 'center',
         "&:hover": {
             opacity: '.7'
         },
     },
-
     city: {
         fontSize: '1.4rem',
-        padding: '4px 6px'
+        margin: 0,
+        padding: 0
+    },
+    value: {
+        fontSize: '0.8rem',
+        color: '#a32018',
+        margin: 0,
+        padding: 0
     }
 
 }));
