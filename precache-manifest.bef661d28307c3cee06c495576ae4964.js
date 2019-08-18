@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2dadd128dc89c851d863e6a4f28d8547",
+    "revision": "47a1377ffea4e4acaa1613335944a7de",
     "url": "/Most-polluted-cities/index.html"
   },
   {
-    "revision": "ceaa5309ffbfc64e6d09",
+    "revision": "17417e215170840a2469",
     "url": "/Most-polluted-cities/static/css/main.61b68826.chunk.css"
   },
   {
-    "revision": "32b67d115cdf0f209864",
-    "url": "/Most-polluted-cities/static/js/2.91991c8e.chunk.js"
+    "revision": "20ad88c882fa76937080",
+    "url": "/Most-polluted-cities/static/js/2.1f601de7.chunk.js"
   },
   {
-    "revision": "ceaa5309ffbfc64e6d09",
-    "url": "/Most-polluted-cities/static/js/main.def89f1a.chunk.js"
+    "revision": "17417e215170840a2469",
+    "url": "/Most-polluted-cities/static/js/main.750948b7.chunk.js"
   },
   {
     "revision": "886bb67ae2522794f34e",
@@ -22,5 +22,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "5ca31ff29cbb51b62bb1ae6eb99c217c",
     "url": "/Most-polluted-cities/static/media/industrial.5ca31ff2.jpg"
+  },
+  {
+    "revision": "5046eb0813680afdf11e32b73f6acdd7",
+    "url": "/Most-polluted-cities/static/media/pollution.5046eb08.jpg"
   }
 ]);

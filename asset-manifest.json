@@ -1,16 +1,17 @@
 {
   "files": {
     "main.css": "/Most-polluted-cities/static/css/main.61b68826.chunk.css",
-    "main.js": "/Most-polluted-cities/static/js/main.def89f1a.chunk.js",
-    "main.js.map": "/Most-polluted-cities/static/js/main.def89f1a.chunk.js.map",
+    "main.js": "/Most-polluted-cities/static/js/main.750948b7.chunk.js",
+    "main.js.map": "/Most-polluted-cities/static/js/main.750948b7.chunk.js.map",
     "runtime~main.js": "/Most-polluted-cities/static/js/runtime~main.d4d98e39.js",
     "runtime~main.js.map": "/Most-polluted-cities/static/js/runtime~main.d4d98e39.js.map",
-    "static/js/2.91991c8e.chunk.js": "/Most-polluted-cities/static/js/2.91991c8e.chunk.js",
-    "static/js/2.91991c8e.chunk.js.map": "/Most-polluted-cities/static/js/2.91991c8e.chunk.js.map",
+    "static/js/2.1f601de7.chunk.js": "/Most-polluted-cities/static/js/2.1f601de7.chunk.js",
+    "static/js/2.1f601de7.chunk.js.map": "/Most-polluted-cities/static/js/2.1f601de7.chunk.js.map",
     "index.html": "/Most-polluted-cities/index.html",
-    "precache-manifest.1cd4bd4a2f393e81faf63a17a3cf3106.js": "/Most-polluted-cities/precache-manifest.1cd4bd4a2f393e81faf63a17a3cf3106.js",
+    "precache-manifest.bef661d28307c3cee06c495576ae4964.js": "/Most-polluted-cities/precache-manifest.bef661d28307c3cee06c495576ae4964.js",
     "service-worker.js": "/Most-polluted-cities/service-worker.js",
     "static/css/main.61b68826.chunk.css.map": "/Most-polluted-cities/static/css/main.61b68826.chunk.css.map",
-    "static/media/industrial.jpg": "/Most-polluted-cities/static/media/industrial.5ca31ff2.jpg"
+    "static/media/industrial.jpg": "/Most-polluted-cities/static/media/industrial.5ca31ff2.jpg",
+    "static/media/pollution.jpg": "/Most-polluted-cities/static/media/pollution.5046eb08.jpg"
   }
 }
