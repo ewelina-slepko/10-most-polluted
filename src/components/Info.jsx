@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
         maxWidth: 330,
         textAlign: 'center',
         "&:hover": {
-            opacity: '.7'
+            opacity: '.9'
         },
     },
     city: {
