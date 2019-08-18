@@ -1,6 +1,8 @@
 import React from 'react'
 import Header from './Header'
 import Info from './Info'
+import Intro from './Intro'
+import Footer from './Footer';
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -36,7 +38,6 @@ const Dashboard = () => {
 
     const handleChange = event => {
         setCountry(event.target.value);
-        // getInfo(event.target.value)
     };
 
     const classes = useStyles();
@@ -170,6 +171,7 @@ const Dashboard = () => {
                         <Button
                             style={{
                                 backgroundColor: "#0d4ea8",
+                                padding: "8px 30px"
                             }}
                             variant="contained"
                             color="primary"
@@ -183,8 +185,8 @@ const Dashboard = () => {
                     </div>
                 </form>
             </div>
-            <Info cities={sortCities()} />
-            {console.log(country)}
+            {cities.length > 0 ? <Info cities={sortCities()} /> : <Intro />}
+            <Footer />
         </>
     )
 }
