@@ -10,10 +10,10 @@ const Info = ({ cities }) => {
                 <div className={window.innerWidth > 992 ? clsx(classes.wrapper, classes.wrapperMargin) : classes.wrapper}>
                     {cities.map((info, i) => {
                         return (
-                            <p key={info.city} className={classes.text}>
+                            <div key={info.city} className={classes.text}>
                                 <p className={classes.city}>{info.city}</p>
                                 <p className={classes.value}>{info.value} {info.parameter}</p>
-                            </p>
+                            </div>
                         )
                     })}
                 </div>

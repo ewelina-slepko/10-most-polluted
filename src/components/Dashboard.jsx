@@ -3,38 +3,40 @@ import Header from './Header'
 import Info from './Info'
 import Intro from './Intro'
 import Footer from './Footer';
-import { makeStyles } from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 const Dashboard = () => {
-    const [cities, setCities] = React.useState([]);
-
+    const [cities, setCities] = React.useState();
     const [country, setCountry] = React.useState('');
 
     const getInfo = shortcut => (e) => {
         e.preventDefault();
+        setCities([]);
         fetch(`https://api.openaq.org/v1/measurements?country=${shortcut}&parameter=pm25&order_by=value&sort=desc&limit=10000`)
             .then(response => response.json())
-            .then(json => setCities(json.results));
-    }
+            .then(json => {
+                setCities(json.results);
+            });
+    };
 
     const sortCities = () => {
-        let arr = []
+        let arr = [];
         cities.length > 0 &&
-            (arr = cities.map((info, i) => {
-                return ({
-                    'city': info.city, 'value': info.value, 'parameter': info.parameter
-                })
-            }))
-        const keys = ['city']
+        (arr = cities.map((info, i) => {
+            return ({
+                'city': info.city, 'value': info.value, 'parameter': info.parameter
+            })
+        }));
+        const keys = ['city'];
         const filtered = arr.filter(
             (s => o =>
-                (k => !s.has(k) && s.add(k))(keys.map(k => o[k]).join('|'))
+                    (k => !s.has(k) && s.add(k))(keys.map(k => o[k]).join('|'))
             )(new Set())
         );
         return filtered.splice(0, 10)
-    }
+    };
 
     const handleChange = event => {
         setCountry(event.target.value);
@@ -60,7 +62,7 @@ const Dashboard = () => {
         },
         {
             value: 'CZ',
-            label: 'Czechia',
+            label: 'Czech Republic',
         },
         {
             value: 'FI',
@@ -138,10 +140,10 @@ const Dashboard = () => {
             value: 'GB',
             label: 'Great Britain',
         },
-    ]
+    ];
     return (
         <>
-            <Header />
+            <Header/>
             <div className={classes.container}>
                 <form className={classes.container} onSubmit={getInfo(country)} noValidate>
                     <TextField
@@ -181,21 +183,32 @@ const Dashboard = () => {
 
                         >
                             Sumbit
-                    </Button>
+                        </Button>
                     </div>
                 </form>
             </div>
-            {cities.length > 0 ? <Info cities={sortCities()} /> : <Intro />}
-            <Footer />
+            {cities && cities.length === 0 &&
+            <div className={classes.loaderContainer}><span className='spinner'/></div>}
+            {cities === undefined && <Intro/>}
+            {cities && cities.length > 0 && <Info cities={sortCities()}/>}
+
+            <Footer/>
         </>
     )
-}
+};
 
 const useStyles = makeStyles(theme => ({
     container: {
         display: 'flex',
         justifyContent: 'center',
         margin: 10
+    },
+    loaderContainer: {
+        width: '100%',
+        height: '28rem',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     textField: {
         marginLeft: theme.spacing(1),

@@ -19,9 +19,6 @@ const Intro = () => {
                     are more sensitive to the effects of breathing in fine particles. Symptoms may include wheezing,
                     chest tightness and difficulty breathing.
                 </p>
-                <p className={classes.textWrapper}>PM2.5 particles result from the burning of fossil fuels (such as coal), organic matter (including wood and grass)
-                    and most other materials, such as rubber and plastic. Motor vehicles, power plant emissions and bushfires
-                    are all major sources of fine particles.</p>
             </div>
         </div>
     )
